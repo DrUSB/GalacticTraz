@@ -11,7 +11,10 @@ int main(){
     cout << "Type help for more information on what commands to use!"<< endl;
     cin >> checkForHelp;
     if (checkForHelp.compare("help") == 0){
-        cout << "**********-------------Help Menu--------------**********\n***Movements:***\nMove North\nMove East\nMove South\nMove West" << endl;
+        cout << "************************************************\n"
+                "                   Help Menu\n************************************************\n"
+                "\nMovements:\n\nmoveN        Moves to North room\nmoveE        Moves to East room\nmoveS        Moves to South room\nmoveW        Moves to West room\nsearch       Searches local room\ntalk         Talks if possible to person in room\ninfo         Gives information on the room you're in"
+                "\n\n***Character Abilities***\n " << endl;
     }
 
     return 0;
