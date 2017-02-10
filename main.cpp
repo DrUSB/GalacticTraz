@@ -1,10 +1,14 @@
 #include <iostream>
-#include <conio.h>
 #include <stdlib.h>
+#include <string>
+#include "Player.h"
 
 using namespace std;
 
+
+
 int main(){
+
     string name;
     int race;
     int cl4ss;
@@ -64,6 +68,13 @@ int main(){
             "5.Ultimate Fish\n"
             "6.Goblin\n" << endl;
     cin >> race;
+    cout << "1.Thief\n"
+            "2.Murderer\n"
+            "3.Con-Artist\n" << endl;
+    cout << "Now please choose a class"<< endl;
+    cin >> cl4ss;
+    Player player1(race,cl4ss);
+    player1.showStats();
 
 
 
