@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1486740802 source:/Users/Max/Documents/C++/GalacticTraz/GalacticTraz/main.cpp
+1486742893 source:/Users/Max/Documents/C++/GalacticTraz/GalacticTraz/main.cpp
 	<iostream>
 	<stdlib.h>
 	<string>
@@ -16,7 +16,7 @@
 
 1486740802 /Users/Max/Documents/C++/GalacticTraz/GalacticTraz/Player.h
 
-1486725045 source:/Users/Max/Documents/C++/GalacticTraz/GalacticTraz/Player.cpp
+1486741433 source:/Users/Max/Documents/C++/GalacticTraz/GalacticTraz/Player.cpp
 	"Player.h"
 	<iostream>
 

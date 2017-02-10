@@ -4,6 +4,24 @@
 #include "Player.h"
 
 using namespace std;
+string firstRoom;
+    void cellRoom(){
+    cout << "You may now enter commands to procced"<< endl;
+    cin >> firstRoom;
+    if (firstRoom == "search"){
+        cout << "You search the room and find a bed, toilet bowl,cell door,sink and window." << endl;
+    }
+    else if(firstRoom == "info"){
+        cout << "You look around the room, its hard to see anything as its so dark, You notice some light coming through\n"
+                "shining onto a bed."<< endl;
+
+    }
+    else{
+        cout << "PLease try again" << endl;
+        return cellRoom();
+    }
+
+    }
 
 
 
@@ -75,8 +93,19 @@ int main(){
     cin >> cl4ss;
     Player player1(race,cl4ss);
     player1.showStats();
-
-
+    cin.get();
+    cout << "You have been caught for your crimes against the Galactical Federation\n"
+            "You are held within the most secure prison in the Galaxy, GalacticTraz\n"
+            "You must escape tonight if you have any chance of escaping at all, before\n"
+            "the prison is in lockdown\n"
+            "Good luck."<< endl;
+    cin.get();
+    cout << "You wake up in a dark cell room..." << endl;
+    cin.get();
+    cout << "You notice the smell of damp in the air\n"
+            "The guards start shouting LIGHTS OUT! All the lights start turning off\n"
+            "one by one until the prison is almost in pure darkness\n" << endl;
+    cellRoom();
 
     return 0;
 }
