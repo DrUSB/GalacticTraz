@@ -5,25 +5,29 @@
 
 using namespace std;
 string firstRoom;
-    void cellRoom(){
+string firstAction;
+
+void cellRoom(Player p){
     cout << "You may now enter commands to procced"<< endl;
     cin >> firstRoom;
+    while (firstRoom != "search" and firstRoom != "info"){
+        cout << "Try again" << endl;
+        cin >> firstRoom;
+    }
+
+
     if (firstRoom == "search"){
         cout << "You search the room and find a bed, toilet bowl,cell door,sink and window." << endl;
-    }
+        cin >> firstAction;}
+        if (firstAction == "break(toilet bowl)" or "break(sink)"){
+            cout << "You cut your hand and lose 1 health" << endl;
+            p.toiletBroke();}
+
     else if(firstRoom == "info"){
         cout << "You look around the room, its hard to see anything as its so dark, You notice some light coming through\n"
-                "shining onto a bed."<< endl;
+                "shining onto a bed."<< endl;}
 
     }
-    else{
-        cout << "PLease try again" << endl;
-        return cellRoom();
-    }
-
-    }
-
-
 
 int main(){
 
@@ -105,7 +109,7 @@ int main(){
     cout << "You notice the smell of damp in the air\n"
             "The guards start shouting LIGHTS OUT! All the lights start turning off\n"
             "one by one until the prison is almost in pure darkness\n" << endl;
-    cellRoom();
+    cellRoom(player1);
 
     return 0;
 }

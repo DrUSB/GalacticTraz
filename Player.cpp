@@ -50,8 +50,16 @@ Player::Player(int race,int cl4ss)
         attack +=4;
         defence -= 1;
     }
-};
+}
 void Player::showStats()
 {
     cout <<"Your stats are:\n"<<"HP: "<< hp <<"\n"<<"Attack: "<<attack<<"\n" <<"Defence:" << defence << endl;
-};
+}
+
+int Player::toiletBroke()
+{
+        hp -= 1;
+        cout << "Your hp is now "<< hp << endl;
+
+    return hp;
+}

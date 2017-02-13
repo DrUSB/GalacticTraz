@@ -4,6 +4,7 @@ class Player{
 public:
     Player(int race,int cl4ss);
     void showStats();
+    int toiletBroke();
 
 
 private:
