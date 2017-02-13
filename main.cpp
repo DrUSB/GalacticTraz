@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
+#include "Player.cpp"
 #include "Player.h"
 #include <stdio.h>
 #include <sqlite3.h>
@@ -10,23 +11,32 @@ string firstRoom;
 string firstAction;
 
 void cellRoom(Player p){
+    // This function is for the first room the cell room. It allows for input and output to create a puzzle for the player to figure out how to escape.
     cout << "You may now enter commands to procced"<< endl;
     cin >> firstRoom;
-    while (firstRoom != "search" and firstRoom != "info"){
+    while (firstRoom != "search" && firstRoom != "info"){
+        //while loop to make sure the correct commands are input and if not to allow them to try again
         cout << "Try again" << endl;
         cin >> firstRoom;
     }
 
-
     if (firstRoom == "search"){
-        cout << "You search the room and find a bed, toilet bowl,cell door,sink and window." << endl;
+        // This if section is for reacting towards the commands the user inputs for example breaking a sink
+        cout << "You search the room and find a bed, toilet_bowl,cell_door,sink and window." << endl;
         cin >> firstAction;}
-        if (firstAction == "break(toilet bowl)" or "break(sink)"){
+    
+        while (firstAction != "break(toilet_bowl)" && firstAction != "break(sink)" && firstAction != "break(cell_door)" && firstAction != "break(window)" ){ 
+        cout << "Try again" << endl;
+        cin >> firstAction;}
+    
+        if (firstAction == "break(toilet_bowl)" || firstAction == "break(sink)" || firstAction == "break(cell_door)" || firstAction == "break(window)"){
             cout << "You cut your hand and lose 1 health" << endl;
-            p.toiletBroke();}
-        if (firstRoom == "search(sink)"){
-            cout << "You search the sink and find some hair pins. (You could use this as lockpicks!)" << endl;
+            p.toiletBroke();
         }
+        
+    
+        else if (firstAction == "search(sink)"){
+            cout << "You search the sink and find some hair pins. (You could use this as lockpicks!)" << endl;}
 
     else if(firstRoom == "info"){
         cout << "You look around the room, its hard to see anything as its so dark, You notice some light coming through\n"
@@ -35,17 +45,19 @@ void cellRoom(Player p){
     }
 
 int main(){
-    sqlite3 *db;
-    int rc;
-    rc=sqlite3_open("GalacticTrazData.db",&db);
+   sqlite3 *db;
+   char *zErrMsg = 0;
+   int rc;
 
-    if(rc){
-        fprintf(stderr, "cant open database: %\n", sqlite3_errmsg(db));
-        return(0);
-    }else{
-    fprintf(stderr,"opened database successfully\n");
-    }
-    sqlite3_close(db);
+   rc = sqlite3_open("test.db", &db);
+
+   if( rc ){
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+      return(0);
+   }else{
+      fprintf(stderr, "Opened database successfully\n");
+   }
+   sqlite3_close(db);
 
     string name;
     int race;
