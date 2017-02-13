@@ -1,9 +1,11 @@
 # depslib dependency file v1.0
-1486982114 source:/Users/Max/Documents/C++/GalacticTraz/GalacticTraz/main.cpp
+1487008192 source:/Users/Max/Documents/C++/GalacticTraz/GalacticTraz/main.cpp
 	<iostream>
 	<stdlib.h>
 	<string>
 	"Player.h"
+	<stdio.h>
+	<sqlite3.h>
 
 1486574855 source:e:\coventry university\c++_projs\prisongame\galactictraz\main.cpp
 	<iostream>
@@ -16,7 +18,7 @@
 
 1486980889 /Users/Max/Documents/C++/GalacticTraz/GalacticTraz/Player.h
 
-1486981397 source:/Users/Max/Documents/C++/GalacticTraz/GalacticTraz/Player.cpp
+1487005863 source:/Users/Max/Documents/C++/GalacticTraz/GalacticTraz/Player.cpp
 	"Player.h"
 	<iostream>
 

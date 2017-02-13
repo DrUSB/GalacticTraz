@@ -36,7 +36,7 @@ Player::Player(int race,int cl4ss)
         defence = 8;
     }
     if(cl4ss == 1){
-        hp -= -1;
+        hp -= 1;
         attack += 2;
         defence -= 2;
     }

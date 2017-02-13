@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string>
 #include "Player.h"
+#include <stdio.h>
+#include <sqlite3.h>
 
 using namespace std;
 string firstRoom;
@@ -22,6 +24,9 @@ void cellRoom(Player p){
         if (firstAction == "break(toilet bowl)" or "break(sink)"){
             cout << "You cut your hand and lose 1 health" << endl;
             p.toiletBroke();}
+        if (firstRoom == "search(sink)"){
+            cout << "You search the sink and find some hair pins. (You could use this as lockpicks!)" << endl;
+        }
 
     else if(firstRoom == "info"){
         cout << "You look around the room, its hard to see anything as its so dark, You notice some light coming through\n"
@@ -30,6 +35,17 @@ void cellRoom(Player p){
     }
 
 int main(){
+    sqlite3 *db;
+    int rc;
+    rc=sqlite3_open("GalacticTrazData.db",&db);
+
+    if(rc){
+        fprintf(stderr, "cant open database: %\n", sqlite3_errmsg(db));
+        return(0);
+    }else{
+    fprintf(stderr,"opened database successfully\n");
+    }
+    sqlite3_close(db);
 
     string name;
     int race;
