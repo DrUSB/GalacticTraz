@@ -50,11 +50,10 @@ void cellRoom(Player p){
         
         else if (firstAction == "search(sink)"){
             cout << "You search the sink and find some hair pins. (You could use these as lockpicks!)" << endl;
-            sqlite3 *db;
-            char *zErrMsg = 0;
-            int rc;
-            if (sqlite3_open("GalacticTrazData.db",&db)== SQLITE_OK){
-                //string sqlstatement =
+           // sqlite3 *db;
+          //  char *zErrMsg = 0;
+           // int rc;
+            //if (sqlite3_open("GalacticTrazData.db",&db)== SQLITE_OK){
                     
             }
            
@@ -62,15 +61,24 @@ void cellRoom(Player p){
 
       
 
-    }
+static int callback(void *NotUsed, int argc, char **argv, char **azColName){
+   int i;
+   for(i=0; i<argc; i++){
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   printf("\n");
+   return 0;
+}
 
-int main(){
+int main()
+{
     // This is the main where functions are called and program runs in lineral progression downwards
     // sqlite3 database is added here and made sure it opens successfully. If it opens successfully it is printed when the game opens. Similarly if it fails to open there is a
     // message saying can't open database
    sqlite3 *db;
    char *zErrMsg = 0;
    int rc;
+   char *sql;
 
    rc = sqlite3_open("GalacticTrazData.db", &db);
 
@@ -80,6 +88,19 @@ int main(){
    }else{
       fprintf(stderr, "Opened database successfully\n");
    }
+   /* Create test SQL statement */
+   sql = "INSERT INTO INVENTORY (NAME,ITEM_ID,QUANTITY,INFO)"   \
+         "VALUES ('Hair pins',0001,1,'Some hair pins');";
+       
+          /* Execute SQL statement */
+   rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+   if( rc != SQLITE_OK ){
+      fprintf(stderr, "SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+   }else{
+      fprintf(stdout, "Records created successfully\n");
+   }
+       
    sqlite3_close(db);
 //Variables are declared here as are the data types.
     string name;
