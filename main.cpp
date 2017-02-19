@@ -25,13 +25,13 @@ void cellRoom(Player p){
         cout << "You search the room and find a bed, toilet_bowl,cell_door,sink and window." << endl;
         cin >> firstAction;
     }
-    
+   
      else if(firstRoom == "info"){
             cout << "You look around the room, its hard to see anything as its so dark, You notice some light coming through\n"
                 "shining onto a bed."<< endl;
              cin >> firstAction;
         }
-    
+        // This section is accessed once the above action is called (search) So a player has to search the room before just bashing in commands    
         while (firstAction != "break(toilet_bowl)" && firstAction != "break(sink)" && firstAction != "break(cell_door)" && firstAction != "break(window)" && firstAction != "search(sink)" ){ 
         cout << "Try again" << endl;
         cin >> firstAction;
@@ -50,7 +50,13 @@ void cellRoom(Player p){
         
         else if (firstAction == "search(sink)"){
             cout << "You search the sink and find some hair pins. (You could use these as lockpicks!)" << endl;
-            //if (sqlite3_open(Galacti))
+            sqlite3 *db;
+            char *zErrMsg = 0;
+            int rc;
+            if (sqlite3_open("GalacticTrazData.db",&db)== SQLITE_OK){
+                //string sqlstatement =
+                    
+            }
            
         }
 
@@ -59,6 +65,9 @@ void cellRoom(Player p){
     }
 
 int main(){
+    // This is the main where functions are called and program runs in lineral progression downwards
+    // sqlite3 database is added here and made sure it opens successfully. If it opens successfully it is printed when the game opens. Similarly if it fails to open there is a
+    // message saying can't open database
    sqlite3 *db;
    char *zErrMsg = 0;
    int rc;
@@ -72,7 +81,7 @@ int main(){
       fprintf(stderr, "Opened database successfully\n");
    }
    sqlite3_close(db);
-
+//Variables are declared here as are the data types.
     string name;
     int race;
     int cl4ss;
@@ -83,6 +92,7 @@ int main(){
     cin.get();
     cout << "For information on commands type help. Otherwise type anything to continue" << endl;
     cin >> checkForHelp;
+    // help menu below
     if (checkForHelp.compare("help") == 0){
         cout << "************************************************\n"
                 "                   Help Menu\n"
@@ -124,6 +134,7 @@ int main(){
     }
     cout << "What is your name prisoner?" << endl;
     cin >> name;
+    // selection for choosing class and race depending on which combination of either is chosen stats will differ and be a mixture of both, allows more unique stats.
     cout << "Welcome " << name << " What is your race? Choose via the Number\n" << endl;
     cout << "1.Dark Gnome\n"
             "2.Galactical Mushroom\n"
@@ -140,6 +151,7 @@ int main(){
     Player player1(race,cl4ss);
     player1.showStats();
     cin.get();
+    //beginning of game with short introduction
     cout << "You have been caught for your crimes against the Galactical Federation\n"
             "You are held within the most secure prison in the Galaxy, GalacticTraz\n"
             "You must escape tonight if you have any chance of escaping at all, before\n"
@@ -151,6 +163,7 @@ int main(){
     cout << "You notice the smell of damp in the air\n"
             "The guards start shouting LIGHTS OUT! All the lights start turning off\n"
             "one by one until the prison is almost in pure darkness\n" << endl;
+    //function to move player into the first room (cellRoom)
     cellRoom(player1);
 
     return 0;
