@@ -1,0 +1,24 @@
+--COMPILING IN TERMINAL FOR C++ COMMANDS--
+g++ -std=c++11 main.cpp -o GAME -l sqlite3 -Wno-write-strings
+then to run the code do:
+./GAME
+
+--GIT COMMANDS--
+git status
+git add (modified file chosen)
+
+git status     (again)
+make sure all modified files are green now as you should have added them, and not red
+
+then do:
+git commit -m "Comment about what changes you made"
+
+then push the update to github:
+git push origin master
+
+to get information from github:
+git pull origin master
+
+*******IMPORTANT INFORMATION FOR GITHUB ON CODIO*******
+MAKE SURE YOU ADD THE REPOSITORY ON REMOTES ON CODIO IF YOU HAVE ANY PROBLEMS LET ME KNOW IN CLASS!
+Then you will be promoted to login to github with username and password once you give that information thats it.

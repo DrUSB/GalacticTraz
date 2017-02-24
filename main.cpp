@@ -50,11 +50,8 @@ void cellRoom(Player p){
         
         else if (firstAction == "search(sink)"){
             cout << "You search the sink and find some hair pins. (You could use these as lockpicks!)" << endl;
-           // sqlite3 *db;
-          //  char *zErrMsg = 0;
-           // int rc;
-            //if (sqlite3_open("GalacticTrazData.db",&db)== SQLITE_OK){
-                    
+            
+        
             }
            
         }
