@@ -2,7 +2,12 @@
 #define Player_H
 class Player{
 public:
-    Player(int race,int cl4ss);
+    //Constructor
+    Player();
+    //Destructor
+    ~Player();
+    
+    Player(int, int);
     void showStats();
     int toiletBroke();
 

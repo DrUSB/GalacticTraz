@@ -3,6 +3,15 @@
 #include <iostream>
 
 using namespace std;
+//Constructor
+Player::Player() {
+    
+}
+//Destructor
+Player::~Player() {
+    
+}
+
 Player::Player(int race,int cl4ss)
 {
     if (race == 1){
