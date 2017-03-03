@@ -11,7 +11,8 @@ string firstRoom;
 string firstAction;
 string getOutCell;
 
-void help(){
+void help()
+{
     cout <<     "************************************************\n"
                 "                   Help Menu\n"
                 "************************************************\n"
@@ -52,77 +53,104 @@ void help(){
 
 
 
-
-
-
-
-void cellRoom(Player p){
+void cellRoom(Player p)
+{
     // This function is for the first room the cell room. It allows for input and output to create a puzzle for the player to figure out how to escape.
     cout << "You may now enter commands to procced"<< endl;
     cin >> firstRoom;
-    if(firstRoom == "help"){
-        help();}
+    if(firstRoom == "help")
+    {
+        help();
+        cin >> firstRoom;
+    }
     
 
-    while (firstRoom != "search" && firstRoom != "info" ){
+    while (firstRoom != "search" && firstRoom != "info" )
+    {
         //while loop to make sure the correct commands are input and if not to allow them to try again
         cout << "Try again" << endl;
         cin >> firstRoom;
     }
     
-     if (firstRoom == "search"){
+     if (firstRoom == "search")
+     {
         // This if section is for reacting towards the commands the user inputs for example breaking a sink
         cout << "You search the room and find a bed, toilet_bowl,cell_door,sink and window." << endl;
         cin >> firstAction;
-        if(firstAction == "help"){
-            help();}
+        if(firstAction == "help")
+        {
+            help();
+            cin >> firstAction;
+        }
      }
    
-     else if (firstRoom == "info"){
+     else if (firstRoom == "info")
+       {
             cout << "You look around the room, its hard to see anything as its so dark, You notice some light coming through\n"
-                "shining onto a bed."<< endl;
+                    "shining onto a bed."<< endl;
              cin >> firstAction;
-             if(firstAction == "help"){
-                help();}               
+             if(firstAction == "help")
+             {
+                help();
+                cin >> firstAction;
+             }
         }
         // This section is accessed once the above action is called (search) So a player has to search the room before just bashing in commands    
-        while (firstAction != "break(toilet_bowl)" && firstAction != "break(sink)" && firstAction != "break(cell_door)" && firstAction != "break(window)" && firstAction != "search(sink)" ){ 
+        while (firstAction != "break(toilet_bowl)" && firstAction != "break(sink)" && firstAction != "break(cell_door)" && firstAction != "break(window)" && firstAction != "search(sink)" )
+        { 
         cout << "Try again" << endl;
         cin >> firstAction;
         }
     
-        if (firstAction == "break(toilet_bowl)" || firstAction == "break(cell_door)" || firstAction == "break(window)"){
+        if (firstAction == "break(toilet_bowl)" || firstAction == "break(cell_door)" || firstAction == "break(window)")
+        {
             cout << "You cut your hand and lose 1 health" << endl;
             p.toiletBroke();
+            p.death();
         }
-        else if ( firstAction == "break(sink)"){
+        else if ( firstAction == "break(sink)")
+        {
             cout << "You cut your hand and lose 1 heath" << endl;
             p.toiletBroke();
+            p.death();
             cout << "While breaking the sink you find some hair pins in the remains (You could use these as lockpicks!)" << endl;
             
         }
         
-        else if (firstAction == "search(sink)"){
-            cout << "You search the sink and find some hair pins. (You could use these as lockpicks!)" << endl; 
-            }
+        else if (firstAction == "search(sink)")
+        {
+            cout << "You search the sink and find some hair pins. (You could use these as lockpicks!)\n"
+                    "Please enter a command to procced" << endl;
+        }
     
         cin >> getOutCell;
-        while(getOutCell != "picklock(cell_door)" ){
+        if(getOutCell == "help")
+        {
+            help();
+            cin >> getOutCell;
+        }
+     
+        while(getOutCell != "picklock(cell_door)" && getOutCell != "picklock(door)" )
+        {
             cout << "Try Again" << endl;
+            cin >> getOutCell;
         }
     
-        if(getOutCell == "picklock(cell_door)"){
-            cout << "You Succesfully picklock the door and escape the cell!!" << endl;
-            //LOAD NEXT ROOM
+        if(getOutCell == "picklock(cell_door)" || "picklock(door)")
+        {
+            cout << "You Succesfully picklock the door and escape the cell!!\n"
+                    "You walk into the <insert room name here>"<< endl;
         }
            
-        }
+}
 
 
 
-static int callback(void *NotUsed, int argc, char **argv, char **azColName){
+static int callback(void *NotUsed, int argc, char **argv, char **azColName)
+{
    int i;
-   for(i=0; i<argc; i++){
+   for(i=0; i<argc; i++)
+   {
       printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
    }
    printf("\n");
@@ -141,24 +169,28 @@ int main()
 
    rc = sqlite3_open("GalacticTrazData.db", &db);
 
-   if( rc ){
+   if( rc )
+   {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
       return(0);
-   }else{
+   }else
+    {
       fprintf(stderr, "Opened database successfully\n");
-   }
+    }
    /* Create test SQL statement */
    sql = "INSERT INTO INVENTORY (NAME,ITEM_ID,QUANTITY,INFO)"   \
          "VALUES ('Hair pins',1,1,'Some hair pins');";
        
           /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-   if( rc != SQLITE_OK ){
+   if( rc != SQLITE_OK )
+   {
       fprintf(stderr, "SQL error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
-   }else{
+   }else
+    {
       fprintf(stdout, "Records created successfully\n");
-   }
+    }
        
    sqlite3_close(db);
 //Variables are declared here as are the data types.
@@ -174,8 +206,10 @@ int main()
     cin.get();
     cout << "For information on commands type help. Otherwise type anything to continue" << endl;
     cin >> firstInput;
-    if(firstInput == "help"){
-                help();}
+    if(firstInput == "help")
+    {
+                help();
+    }
     cout << "What is your name prisoner?" << endl;
     cin >> name;
     
@@ -188,13 +222,29 @@ int main()
             "5.Ultimate Fish\n"
             "6.Goblin\n" << endl;
     cin >> race;
+    while(race != 1 && race != 2 && race != 3 && race != 4 && race != 5 && race != 6 && cin.fail())
+    {
+      cin.clear();
+      cin.ignore(100, '\n');
+      cout << "Wrong input " << race << " , please try again" << endl;
+      cin >> race;
+    }
+    
     cout << "Now please choose a class"<< endl;
     cout << "1.Thief\n"
             "2.Murderer\n"
             "3.Con-Artist\n" << endl;
     cin >> cl4ss;
+    while(cl4ss != 1 && cl4ss != 2 && cl4ss != 3 && cin.fail())
+    {
+     cin.clear();
+     cin.ignore(100, '\n');
+     cout << "Wrong input " << cl4ss << " , please try again" << endl; 
+     cin >> cl4ss;
+    }
     Player player1(race,cl4ss);
     player1.showStats();
+    player1.getHp();
     cin.get();
     //beginning of game with short introduction
     cout << "You have been caught for your crimes against the Galactical Federation\n"

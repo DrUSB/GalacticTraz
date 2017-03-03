@@ -10,6 +10,11 @@ public:
     Player(int, int);
     void showStats();
     int toiletBroke();
+    void death();
+    void attackSkill();
+    int getHp();
+    int getAtt();
+    int getDef();
 
 
 private:
