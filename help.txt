@@ -1,0 +1,36 @@
+                ************************************************
+                                   Help Menu
+                ************************************************
+                Movements:
+                n                Moves to North room
+                e                Moves to East room
+                s                Moves to South room
+                w                Moves to West room
+                Character Abilities:
+                search                         Searches local room
+                look                           Looks around room
+                talk                           Talks if possible to person in room
+                info                           Gives information on the room you're in
+                pickUp(item)                   Pickes up specified item
+                kill(enemy) with (item)        Kills a specified enemy with a chosen item
+                break(object)                  Breaks chosen object in room
+                open(oject)                    Open specified object e.g Box,Crate
+                drop(object)                   Drops specified item from inventory
+                examine(object)                Examines specified object
+                
+                Game options:
+                save                           Saves game at current point
+                restore                        Return to last save
+                restart                        Restarts game at beginning
+                quit                           Quits game
+                
+                Class/Crime Abilities:
+                Thief:
+                picklock(object)               Picklock a door or chest etc.
+                stealth                        Toggle stealth to go into or out off stealth mode
+                Murderer:
+                smash(object)                  Smashes chosen object for example a door
+                charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%
+                Con Artist:
+                teleport(direction)            Works instead of movement but can go past locked doors
+                invisible                      Makes you go invisible

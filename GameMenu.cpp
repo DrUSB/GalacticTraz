@@ -26,7 +26,7 @@ Player GameMenu::FirstMenu()
     cin >> firstInput;
     if(firstInput == "help")
     {
-      //help();
+      HelpMenu();
     }
     cout << "What is your name prisoner?" << endl;
     cin >> name;
@@ -83,10 +83,10 @@ Player GameMenu::FirstMenu()
 
 void GameMenu::HelpMenu()
 {
-    cout << "hi" << endl;
-    /*string line;
-    cout << "This works YO" << endl;
-    ifstream myfile ("GameHelp.txt");
+    
+    
+    string line;
+    ifstream myfile ("help.txt");
     if (myfile.is_open())
     {
         while(getline (myfile,line))
@@ -95,5 +95,5 @@ void GameMenu::HelpMenu()
         }
         myfile.close();
     }
-    else cout << "Cannot open file";*/
+    else cout << "Cannot open file";
 }

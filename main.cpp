@@ -7,62 +7,26 @@
 #include <sqlite3.h>
 #include "GameMenu.h"
 #include "GameMenu.cpp"
+#include "item.h"
+#include "item.cpp" 
+#include <vector>
 
 using namespace std;
 string firstRoom;
 string firstAction;
 string getOutCell;
 
-void help()
-{
-    cout <<     "************************************************\n"
-                "                   Help Menu\n"
-                "************************************************\n"
-                "\nMovements:\n\n"
-                "n                Moves to North room\n"
-                "e                Moves to East room\n"
-                "s                Moves to South room\n"
-                "w                Moves to West room\n\n"
-                "Character Abilities:\n\n"
-                "search                         Searches local room\n"
-                "look                           Looks around room\n"
-                "talk                           Talks if possible to person in room\n"
-                "info                           Gives information on the room you're in\n"
-                "pickUp(item)                   Pickes up specified item\n"
-                "kill(enemy) with (item)        Kills a specified enemy with a chosen item\n"
-                "break(object)                  Breaks chosen object in room\n"
-                "open(oject)                    Open specified object e.g Box,Crate\n"
-                "drop(object)                   Drops specified item from inventory\n"
-                "examine(object)                Examines specified object\n"
-                "\n"
-                "Game options:\n"
-                "save                           Saves game at current point\n"
-                "restore                        Return to last save\n"
-                "restart                        Restarts game at beginning\n"
-                "quit                           Quits game\n"
-                "\n"
-                "Class/Crime Abilities:\n"
-                "Thief:\n"
-                "picklock(object)               Picklock a door or chest etc.\n"
-                "stealth                        Toggle stealth to go into or out off stealth mode\n"
-                "Murderer:\n"
-                "smash(object)                  Smashes chosen object for example a door\n"
-                "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
-                "Con Artist:\n"
-                "teleport(direction)            Works instead of movement but can go past locked doors\n"
-                "invisible                      Makes you go invisible\n" << endl;
-}
-
 
 
 void cellRoom(Player p)
 {
+    GameMenu game;
     // This function is for the first room the cell room. It allows for input and output to create a puzzle for the player to figure out how to escape.
     cout << "You may now enter commands to procced"<< endl;
     cin >> firstRoom;
     if(firstRoom == "help")
     {
-        help();
+        game.HelpMenu();
         cin >> firstRoom;
     }
     
@@ -81,7 +45,7 @@ void cellRoom(Player p)
         cin >> firstAction;
         if(firstAction == "help")
         {
-            help();
+            game.HelpMenu();
             cin >> firstAction;
         }
      }
@@ -93,7 +57,7 @@ void cellRoom(Player p)
              cin >> firstAction;
              if(firstAction == "help")
              {
-                help();
+                game.HelpMenu();
                 cin >> firstAction;
              }
         }
@@ -115,20 +79,27 @@ void cellRoom(Player p)
             cout << "You cut your hand and lose 1 heath" << endl;
             p.toiletBroke();
             p.death();
-            cout << "While breaking the sink you find some hair pins in the remains (You could use these as lockpicks!)" << endl;
+            item hairpin("Hair pin","These can be used for picklocking");
+            vector <item> Inventory;
+            Inventory.push_back(hairpin);
+            cout << "You now have a " << Inventory[0].getName() << " in your inventory " << Inventory[0].getInfo() << endl;
+            
             
         }
         
         else if (firstAction == "search(sink)")
         {
-            cout << "You search the sink and find some hair pins. (You could use these as lockpicks!)\n"
-                    "Please enter a command to procced" << endl;
+            item hairpin("Hair pin","These can be used for picklocking");
+            vector <item> Inventory;
+            Inventory.push_back(hairpin);
+            cout << "You now have a " << Inventory[0].getName() << " in your inventory " << Inventory[0].getInfo() << endl;
+            
         }
     
         cin >> getOutCell;
         if(getOutCell == "help")
         {
-            help();
+            game.HelpMenu();
             cin >> getOutCell;
         }
      
@@ -195,7 +166,6 @@ int main()
     }
        
    sqlite3_close(db);
-//Variables are declared here as are the data types.
     
     GameMenu G1;
     cellRoom(G1.FirstMenu());

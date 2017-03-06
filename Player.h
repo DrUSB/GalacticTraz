@@ -15,6 +15,7 @@ public:
     int getHp();
     int getAtt();
     int getDef();
+    
 
 
 private:

@@ -1,5 +1,5 @@
-#ifndef GameMenuameMenu_H
-#define GameMenuameMenu_H
+#ifndef GameMenu_H
+#define GameMenu_H
 #include "Player.h"
 
 class GameMenu
@@ -25,7 +25,7 @@ class GameMenu
 
 
     //Methods declaration
-
+    
 
 };
 #endif // GameMenu_H
