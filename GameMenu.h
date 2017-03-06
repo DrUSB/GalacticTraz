@@ -1,6 +1,9 @@
 #ifndef GameMenu_H
 #define GameMenu_H
 #include "Player.h"
+#include <string>
+
+using namespace std;
 
 class GameMenu
 {

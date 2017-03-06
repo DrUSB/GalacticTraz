@@ -1,5 +1,8 @@
 #ifndef item_H
 #define item_H
+#include <string>
+
+using namespace std;
 
 class item
 {

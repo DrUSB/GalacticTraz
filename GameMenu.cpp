@@ -84,7 +84,6 @@ Player GameMenu::FirstMenu()
 void GameMenu::HelpMenu()
 {
     
-    
     string line;
     ifstream myfile ("help.txt");
     if (myfile.is_open())

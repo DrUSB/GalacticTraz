@@ -1,4 +1,5 @@
 #include "item.h"
+#include <string>
 
 //Contructor
 item::item()
