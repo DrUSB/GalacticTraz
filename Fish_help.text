@@ -1,0 +1,78 @@
+                "************************************************\n"
+                "                   Help Menu\n"
+                "************************************************\n"
+                "\nMovements:\n\n"
+                "n                Moves to North room\n"
+                "e                Moves to East room\n"
+                "s                Moves to South room\n"
+                "w                Moves to West room\n\n"
+                "sn               Swims to North room\n"
+                "se               Swims to East room\n"
+                "ss               Swims to South room\n"
+                "sw               Swims to West room\n\n"
+                "Character Abilities:\n\n"
+                "search                         Searches local room\n"
+                "look                           Looks around room\n"
+                "talk                           Talks if possible to person in room\n"
+                "info                           Gives information on the room you're in\n"
+                "pickUp(item)                   Pickes up specified item\n"
+                "kill(enemy) with (item)        Kills a specified enemy with a chosen item\n"
+                "break(object)                  Breaks chosen object in room\n"
+                "open(oject)                    Open specified object e.g Box,Crate\n"
+                "drop(object)                   Drops specified item from inventory\n"
+                "examine(object)                Examines specified object\n"
+                "\n"
+                "Game options:\n"
+                "save                           Saves game at current point\n"
+                "restore                        Return to last save\n"
+                "restart                        Restarts game at beginning\n"
+                "quit                           Quits game\n"
+                "\n"
+                "Class/Crime Abilities:\n"
+                "Thief:\n"
+                "picklock(object)               Picklock a door or chest etc.\n"
+                "stealth                        Toggle stealth to go into or out off stealth mode\n"
+                "Murderer:\n"
+                "smash(object)                  Smashes chosen object for example a door\n"
+                "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
+                "Con Artist:\n"
+                "teleport(direction)            Works instead of movement but can go past locked doors\n"
+                "invisible                      Makes you go invisible\n" << endl;
+
+    }
+    cout << "What is your name prisoner?" << endl;
+    cin >> name;
+    // selection for choosing class and race depending on which combination of either is chosen stats will differ and be a mixture of both, allows more unique stats.
+    cout << "Welcome " << name << " What is your race? Choose via the Number\n" << endl;
+    cout << "1.Dark Gnome\n"
+            "2.Galactical Mushroom\n"
+            "3.Ogre\n"
+            "4.Human\n"
+            "5.Ultimate Fish\n"
+            "6.Goblin\n" << endl;
+    cin >> race;
+    cout << "1.Thief\n"
+            "2.Murderer\n"
+            "3.Con-Artist\n" << endl;
+    cout << "Now please choose a class"<< endl;
+    cin >> cl4ss;
+    Player player1(race,cl4ss);
+    player1.showStats();
+    cin.get();
+    //beginning of game with short introduction
+    cout << "You have been caught for your crimes against the Galactical Federation\n"
+            "You are held within the most secure prison in the Galaxy, GalacticTraz\n"
+            "You must escape tonight if you have any chance of escaping at all, before\n"
+            "the prison is in lockdown\n"
+            "Good luck."<< endl;
+    cin.get();
+    cout << "You wake up in the deep sea..." << endl;
+    cin.get();
+    cout << "You notice the vastness of the sea\n"
+            "You notice that you are trapped and there are sharks circling\n"
+            "view is blocked and find it difficult to see if there is any way out\n" << endl;
+    //function to move player into the third room (blockRoom)
+    blockRoom(player1);
+
+    return 0;
+}
