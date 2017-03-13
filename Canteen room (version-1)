@@ -1,0 +1,35 @@
+void canteen_room()
+{
+    cout<<"Enter commands to proceed"<<endl;
+    cin>> c_room;
+    while (c_room != "search" && c_room != "info")
+    {
+        cout<<"Try again"<< endl;
+        cin>> c_room;
+    }
+    if (c_room == "search")
+    {
+        cout<<"You search the room and find tables, chairs, bread and milk on serving table."<<endl;
+        cin>>c_room_action;
+    }
+    else if (c_room == "info")
+    {
+        cout<<"As you walked into the canteen, you notice it is well lit, very large and found nobody inside..."<<endl;
+        cin>>c_room_action;
+    }
+    while (c_room_action != "eat(bread)" && c_room_action != "drink(milk)")
+        {
+            cout<<"Try again"<<endl;
+            cin>>c_room_action;
+        }
+    if (c_room_action == "eat(bread)")
+    {
+        cout<<"you eat the bread and gain some hp."<<endl;
+        cin>>c_room_action;
+    }
+    else if (c_room_action == "eat(milk)")
+    {
+        cout<<"you drink the milk and gain some hp."<<endl;
+        cin>>c_room_action;
+    }
+}
