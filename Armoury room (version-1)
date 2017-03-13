@@ -1,0 +1,41 @@
+void armoury_room()
+{
+    cout << "Enter commands to proceed" << endl;
+    cin >> a_room;
+    while (a_room != "info" && a_room != "info")
+    {
+        cout<< "Try again"<< endl;
+        cin>>a_room;
+        
+    }
+    
+    if (a_room == "search")
+    {
+        cout<< "You search the room and find bulletproof_vests on top of tables, several weapon racks and a small window \n"
+            "You also notice there are no bullets in guns that are in the weapon racks but it can still be used as a weapon"<<endl;
+        cin >> a_room_action;
+    }
+    
+    else if (a_room == "info")
+    {
+        cout<< "You stand at the entrance, allowing your eyes to adjust to the dim light.\n" 
+          "You notice the room is quite small and packed with things." <<endl;
+        cin>> a_room_action;
+       
+    }
+    
+    while (a_room_action != "pickUp(bulletproof_vest)" && a_room_action != "pickUp(gun)" )
+    {
+        cout<<"Try again" << endl;
+        cin >> a_room_action;
+    }
+    if (a_room_action == "pickUp(bulletproof_vest)")
+    {
+        cout<<"you pick up the bulletproof_vest and wear it, this increases your defence."<<endl;
+        cin>>a_room_action;
+    }
+    if (a_room_action == "pickUp(gun)")
+    {
+        cout<<"you pickup the gun, this in turn increased your attack. "<<endl;
+        cin>>a_room_action;
+    }
