@@ -77,7 +77,7 @@ int main()
    int rc;
    char *sql;
 
-   rc = sqlite3_open("GalacticTrazData.db", &db);
+   rc = sqlite3_open("GalacticTrazData.db", &db); 
 
    if( rc ){
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
