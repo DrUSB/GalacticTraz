@@ -151,7 +151,13 @@ int main()
                 "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
                 "Con Artist:\n"
                 "teleport(direction)            Works instead of movement but can go past locked doors\n"
-                "invisible                      Makes you go invisible\n" << endl;
+                "invisible                      Makes you go invisible\n" 
+                "Fish:\n"
+                "throw(object)                  throws an object at enemy\n"
+                "attack(enemy)                  approaches enemy + 10% health increase\n\n"
+                "Con Artist:\n"
+                "swim(direction)                increases swim speed in certain direction\n"       
+                                                            << endl;
 
     }
     cout << "What is your name prisoner?" << endl;
@@ -167,7 +173,8 @@ int main()
     cin >> race;
     cout << "1.Thief\n"
             "2.Murderer\n"
-            "3.Con-Artist\n" << endl;
+            "3.Con-Artist\n" 
+            "4.Fish\n" << endl;
     cout << "Now please choose a class"<< endl;
     cin >> cl4ss;
     Player player1(race,cl4ss);
