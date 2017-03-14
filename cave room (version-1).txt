@@ -1,0 +1,35 @@
+void canteen_room()
+{
+    cout<<"Enter commands to proceed"<<endl;
+    cin>> c_room;
+    while (c_room != "search" && c_room != "info")
+    {
+        cout<<"Try again"<< endl;
+        cin>> c_room;
+    }
+    if (c_room == "search")
+    {
+        cout<<"You enter the room and see it deserted with only weeds and broken pieces of rock."<<endl;
+        cin>>c_room_action;
+    }
+    else if (c_room == "info")
+    {
+        cout<<"Aas you approach inwards, it becomes apparent it is empty with only the light coming through the holes..."<<endl;
+        cin>>c_room_action;
+    }
+    while (c_room_action != "eat(weeds)" && c_room_action != "drink(water)")
+        {
+            cout<<"Try again"<<endl;
+            cin>>c_room_action;
+        }
+    if (c_room_action == "eat(weeds)")
+    {
+        cout<<"you eat the weeds and gain some hp."<<endl;
+        cin>>c_room_action;
+    }
+    else if (c_room_action == "drink(water)")
+    {
+        cout<<"you drink the water and gain some hp."<<endl;
+        cin>>c_room_action;
+    }
+}
