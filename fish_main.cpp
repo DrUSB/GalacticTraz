@@ -35,7 +35,7 @@ void cellRoom(Player p)
     while (cellRoom != "search" && cellRoom != "info" )
     {
         //while loop to make sure the correct commands are input and if not to allow them to try again
-        cout << "Try again" << endl;
+        cout << "Try again" << endl; 
         cin >> cellRoom;
     }
 
