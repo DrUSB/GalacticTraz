@@ -1,0 +1,80 @@
+# include <iostream>
+using namespace std;
+
+string a_room;
+int a = 0;
+int b = 0;
+
+void armoury_room2()
+{
+    cin >> a_room;
+    cout<<"......................................................................................................................"<<endl;
+    if (a_room == "n")
+    {
+        cout<<"you leave the armoury room..."<<endl;
+        // function for canteen goes here
+    }
+    else if (a_room == "search" || a_room == "info")
+    {
+        if (a_room == "search")
+        {
+            cout<< "You search the room and find bulletproof_vests on top of tables, several weapon racks and a small window \n"
+            "You also notice there are no bullets in guns that are in the weapon racks but it can still be used as a weapon"<<endl;
+            armoury_room2();
+        }
+        if (a_room == "info")
+        {
+            cout<< "You stand at the entrance, allowing your eyes to adjust to the dim light.\n" 
+            "You notice the room is quite small and packed with things." <<endl;
+            armoury_room2();
+        }
+    }
+    else if (a_room== "pickUp(gun)" && a == 0 || a_room == "pickUp(guns)" && a == 0)
+    {
+        cout<<"you pickup the gun, this in turn increased your attack. "<<endl;
+        a = 1;
+        armoury_room2();
+    }
+    else if (a_room == "pickUp(gun)" && a == 1 || a_room == "pickUp(guns)" && a == 1)
+    {
+        cout<<"you already have a gun..."<<endl;
+        cout<<"you cannot pick up another gun..."<<endl;
+
+        armoury_room2();
+        
+    }
+    else if (a_room == "pickUp(bulletproof_vests)" && b == 0 || a_room == "pickUp(bulletproof_vest)" && b == 0)
+    {
+        cout<<"you pick up the bulletproof_vest and wear it, this increases your defence."<<endl;
+       
+        b = 1;
+        armoury_room2();
+    }
+    else if(a_room == "pickUp(bulletproof_vests)" && b==1 || a_room == "pickUp(bulletproof_vest)" && b == 1)
+    {
+        cout<<"you are already wearing a bulletproof_vest..."<<endl;
+        cout<< "you cannot wear another one..."<<endl;
+        armoury_room2();
+    }
+    else 
+    {
+        cout<< "Invalid command...."<<endl;
+        cout<< "Please try again..."<<endl;
+        armoury_room2();
+        
+    }
+       
+}
+
+void armoury_room()
+{
+    cout<<"You are now inside the armoury room..."<<endl;
+    cout<<"Enter commands to proceed..."<<endl;
+    armoury_room2();
+}
+
+
+int main()
+{
+    armoury_room();
+}
