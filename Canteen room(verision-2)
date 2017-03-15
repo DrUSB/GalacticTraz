@@ -1,0 +1,76 @@
+# include <iostream>
+using namespace std;
+
+string c_room;
+int c = 0;
+int d = 0;
+
+void canteen_room2()
+{
+    cin >> c_room;
+    cout<<"......................................................................................................................"<<endl;
+    if (c_room == "s")
+    {
+        cout<<"you leave the canteen room..."<<endl;
+        // function for armoury goes here
+    }
+    else if (c_room == "search" || c_room == "info")
+    {
+        if (c_room == "search")
+        {
+             cout<<"You search the room and find tables, chairs, bread and milk on serving table."<<endl;
+             canteen_room2();
+        }
+        if (c_room == "info")
+        {
+             cout<<"As you walked into the canteen, you notice it is well lit, very large and found nobody inside..."<<endl;
+             canteen_room2();
+        }
+    }
+    else if (c_room == "eat(bread)" && c == 0)
+    {
+        cout<<"You eat the bread and gain some hp... "<<endl;
+        c = 1;
+        canteen_room2();
+    }
+    else if (c_room == "eat(bread)" && c == 1)
+    {
+        cout<<"you already ate the bread... "<<endl;
+        cout<<"you dont feel like eating anymore..."<<endl;
+        canteen_room2();
+        
+    }
+    else if (c_room == "drink(milk)" && d == 0 )
+    {
+        cout<<"you drink the milk and gain some hp"<<endl;
+        d = 1;
+        canteen_room2();
+    }
+    else if(c_room == "drink(milk)" && d==1 )
+    {
+        cout<<"you are already drank the milk..."<<endl;
+        cout<< "you dont feel thirsty anymore..."<<endl;
+        canteen_room2();
+    }
+    else 
+    {
+        cout<< "Invalid command...."<<endl;
+        cout<< "Please try again..."<<endl;
+        canteen_room2();
+        
+    }
+       
+}
+
+void canteen_room()
+{
+    cout<<"You are now inside the armoury room..."<<endl;
+    cout<<"Enter commands to proceed..."<<endl;
+    canteen_room2();
+}
+
+
+int main()
+{
+    canteen_room();
+}
