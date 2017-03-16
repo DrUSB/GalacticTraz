@@ -15,7 +15,13 @@ public:
     int getHp();
     int getAtt();
     int getDef();
+    int weeds();
+    int plants();
+    int Glass();
+    int pebbles();
+    int door_lock();
     
+   
 
 
 private:
