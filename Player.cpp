@@ -1,5 +1,4 @@
 #include "Player.h"
-
 #include <iostream>
 
 using namespace std;
@@ -42,7 +41,7 @@ Player::Player(int race,int cl4ss)
     if(race == 5)
     {
         hp = 4;
-        attack = 10;
+        attack = 2;
         defence = 4;
     }
     if(race == 6)
@@ -84,7 +83,27 @@ int Player::toiletBroke()
     return hp;
 }
 
+int Player::pebbles()
+{
+    hp -= 1;
+    cout << "Your hp is now "<< hp << endl;
+    
+    return hp;
+}
+
+
+
+int Player::door_lock()
+{
+    hp -= 1;
+    cout << "Your hp is now "<< hp << endl;
+    
+    return hp;
+}
+
+    
 void Player::death()
+    
 {
     if(hp <= 0)
     {
@@ -93,10 +112,13 @@ void Player::death()
     }
 }
 
+
 /*void Player::attackSkill(enemy)
 {
 NOT FINISHED CODE    (enemy hp) - ((attack) - (enemy defence) )
 }*/
+
+
 
 int Player::getHp()
 {
@@ -112,3 +134,6 @@ int Player::getDef()
 {
     return (defence);
 }
+
+
+
