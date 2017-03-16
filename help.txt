@@ -12,7 +12,8 @@
                 talk                           Talks if possible to person in room
                 info                           Gives information on the room you're in
                 pickUp(item)                   Pickes up specified item
-                eat(item)                      Eats a specified item
+                eat(item)                      Eats a specified item / food.
+                drink(item)                    Drinks a specified item/ drink.
                 kill(enemy) with (item)        Kills a specified enemy with a chosen item
                 break(object)                  Breaks chosen object in room
                 open(oject)                    Open specified object e.g Box,Crate
