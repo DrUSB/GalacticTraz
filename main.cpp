@@ -1,26 +1,53 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
-#include "Player.cpp"
 #include "Player.h"
 #include <stdio.h>
 #include <sqlite3.h>
 #include "GameMenu.h"
-#include "GameMenu.cpp"
 #include "item.h"
-#include "item.cpp"
 #include <vector>
-#include <sqlite3>
+#include "libsqlite.hpp"
 using namespace std;
 string firstRoom;
 string firstAction;
 string getOutCell;
 
-
-
-void cellRoom(Player p)
+void sqliteinsert()
 {
     sqlite3 *db;
+    int rc;
+    const char *sql;
+    
+    rc = sqlite3_open("/Users/sharankaur/Documents/glactic traz/glactic traz/GalacticTrazData.db", &db);
+    
+    if( rc )
+    {
+        cout << "cant open database" << endl;
+    }
+    else
+    {
+        cout << "Opened database successfully" << endl;
+    }
+    /* Create test SQL statement */
+    sql = "INSERT INTO INVENTORY (NAME,ITEM_ID,QUANTITY,INFO)"   \
+    "VALUES ('Hair pins',1,1,'Some hair pins');";
+  
+    
+    
+
+    /* Create test SQL statement */
+    sql = "INSERT INTO INVENTORY (NAME,ITEM_ID,QUANTITY,INFO)"   \
+    "VALUES ('Silver coin',2,1'A silver coin');";
+    
+
+    sqlite3_close(db);
+}
+
+        
+void cellRoom(Player p)
+{
+    sqliteinsert();
     GameMenu game;
     // This function is for the first room the cell room. It allows for input and output to create a puzzle for the player to figure out how to escape.
     cout << "You may now enter commands to procced"<< endl;
@@ -113,63 +140,149 @@ void cellRoom(Player p)
         if(getOutCell == "picklock(cell_door)" || "picklock(door)")
         {
             cout << "You Succesfully picklock the door and escape the cell!!\n"
-                    "You walk into the <insert room name here>"<< endl;
+                    "You walk into the Cave room"<< endl;
         }
 
 }
 
 
 
-static int callback(void *NotUsed, int argc, char **argv, char **azColName)
+
+
+
+string c_room;
+
+void cave_room()
+    
 {
-   int i;
-   for(i=0; i<argc; i++)
-   {
-      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-   }
-   printf("\n");
-   return 0;
+    sqliteinsert();
+    GameMenu game;
+    // This function is for the first room the cell room. It allows for input and output to create a puzzle for the player to figure out how to escape.
+    
+    Player p;
+    item pebbles("Pebbles","Some shiny pebbles");
+    item weeds("weeds", "weeds plants");
+    item plants("plants", "wild plants");
+    item door_lock("door_lock", "lock on the door");
+    item glass("glass", "some pieces of glass");
+    
+    cout << "You are now in the cave room "<<endl;
+    
+    cout << "view is blocked and find it difficult to see if there is any way out"<<endl;
+    
+    cout << "You may now enter commands to procced"<< endl;
+    
+    cin >> c_room;
+    if(c_room == "help")
+        
+    {
+        game.HelpMenu();
+        cin >> c_room;
+    
+    }
+    
+    while (c_room != "search" && c_room != "info")
+    {
+        cout<<"Try again"<< endl;
+        cin >> c_room;
+    }
+    
+    if (c_room == "search")
+    {
+        cout<<"You enter the room and see it deserted with weeds, pebbles, plants, door_lock and glass."<<endl;
+        cin >> firstAction;
+        
+        if(firstAction == "help")
+        {
+            game.HelpMenu();
+            cin >> firstAction;
+        }
+    }
+    
+    else if (c_room == "info")
+    {
+    
+        cout<<"As you approach inwards, it becomes apparent it is empty with only the light coming through the holes..."<<endl;
+        cin >> firstAction;
+        if(firstAction == "help")
+        {
+            game.HelpMenu();
+            cin >> firstAction;
+        }
+    }
+    
+          // This section is accessed once the above action is called (search) So a player has to search the room before just bashing in commands
+      while (firstAction != "search(weeds)" && firstAction != "break(pebbles)" && firstAction != "break(door_lock)" && firstAction != "break(broken pieces of rock)" && firstAction != "break(plants)" && firstAction != "eat(weeds)" )
+          
+      {
+        cout <<"Try again" <<endl;
+        cin >> firstAction;
+      }
+    
+      if ( firstAction == "break(pebbles)" || firstAction == "break(door_lock)" || firstAction == "break(plants)" || firstAction == "break(glass)")
+          
+      {
+        cout << "You cut your hand and lose 1 health" << endl;
+        p.pebbles();
+        p.door_lock();
+      }
+      else if ( firstAction == "eat(weeds)")
+          
+      {
+          cout << "You ate posionous food and loose 1 health" <<endl;
+          p.pebbles();
+          p.door_lock();
+          item Silvercoin("Silver coin","These can be used to open the door" );
+          vector <item> Inventory;
+          Inventory.push_back(Silvercoin);
+          cout << "You now have a " << Inventory[0].getName() << " in your inventory " << Inventory[0].getInfo() << endl;
+      }
+    
+      else if (firstAction == "search(weeds)")
+      {
+          item Silvercoin("Silver Coin","These can be used to open the door");
+          vector <item> Inventory;
+          Inventory.push_back(Silvercoin);
+          cout << "You now have a " << Inventory[0].getName() << " in your inventory " << Inventory[0].getInfo() << endl;
+          
+      }
+    
+    
+
+    
+    
+    while(getOutCell != "picklock(door_lock)" && getOutCell != "picklock(door)" )
+    {
+        cout << "Try Again" << endl;
+        cin >> getOutCell;
+    }
+    
+    if(getOutCell == "picklock(door_lock)" || "picklock(door)")
+    {
+        cout << "You Succesfully picklock the door and escape the Cave room!!\n"
+        "Well Done! You are free now"<< endl;
+    }
+    
 }
+    
+    
+    
+    
+    
+      
 
 int main()
 {
-    // This is the main where functions are called and program runs in lineral progression downwards
-    // sqlite3 database is added here and made sure it opens successfully. If it opens successfully it is printed when the game opens. Similarly if it fails to open there is a
-    // message saying can't open database
-   sqlite3 *db;
-   char *zErrMsg = 0;
-   int rc;
-   char *sql;
 
-   rc = sqlite3_open("GalacticTrazData.db", &db);
-
-   if( rc )
-   {
-      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      return(0);
-   }else
-    {
-      fprintf(stderr, "Opened database successfully\n");
-    }
-   /* Create test SQL statement */
-   sql = "INSERT INTO INVENTORY (NAME,ITEM_ID,QUANTITY,INFO)"   \
-         "VALUES ('Hair pins',1,1,'Some hair pins');";
-
-          /* Execute SQL statement */
-   rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-   if( rc != SQLITE_OK )
-   {
-      fprintf(stderr, "SQL error: %s\n", zErrMsg);
-      sqlite3_free(zErrMsg);
-   }else
-    {
-      fprintf(stdout, "Records created successfully\n");
-    }
-
-   sqlite3_close(db);
-
+    
     GameMenu G1;
     cellRoom(G1.FirstMenu());
-
+    cave_room();
+    
     return 0;
+
 }
+
+
+
+
