@@ -43,6 +43,7 @@ void armoury_room2() // this is the recursive function of the armoury room.
     else if (a_room== "pickUp(gun)" && a == 0 || a_room == "pickUp(guns)" && a == 0) 
     {
         cout<<"you pickup the gun, this in turn increased your attack. "<<endl;
+        //missing code to make changes to player's attack points.
         a = 1; // once user meets the condition once, it cannot be met again by changing the value of "a" thereby, changing the condition.
         armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition.
     }
@@ -57,7 +58,7 @@ void armoury_room2() // this is the recursive function of the armoury room.
     else if (a_room == "pickUp(bulletproof_vests)" && b == 0 || a_room == "pickUp(bulletproof_vest)" && b == 0)
     {
         cout<<"you pick up the bulletproof_vest and wear it, this increases your defence."<<endl;
-       
+        //missing code to make changes to player's defence points.
         b = 1; // once user meets the condition once, it cannot be met again by changing the value of "b" thereby, changing the condition.
         armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition.
     }
@@ -66,6 +67,50 @@ void armoury_room2() // this is the recursive function of the armoury room.
         cout<<"you are already wearing a bulletproof_vest..."<<endl; // this message notifies that the command can only be used once.
         cout<< "you cannot wear another one..."<<endl;
         armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition.
+    }
+    else if(a_room == "help") // this allows user to find valid commands to progress in game.
+    {
+        //help menu done by - Sohail ############################################################################################################
+        cout << "************************************************\n"  
+                "                   Help Menu\n"
+                "************************************************\n"
+                "\nMovements:\n\n"
+                "n                Moves to North room\n"
+                "e                Moves to East room\n"
+                "s                Moves to South room\n"
+                "w                Moves to West room\n\n"
+                "Character Abilities:\n\n"
+                "search                         Searches local room\n"
+                "look                           Looks around room\n"
+                "talk                           Talks if possible to person in room\n"
+                "info                           Gives information on the room you're in\n"
+                "pickUp(item)                   Pickes up specified item\n"
+                "eat(item)                      Eats the secified item/food\n"
+                "drink(item)                    Drinks the specified item/drink\n"
+                "kill(enemy) with (item)        Kills a specified enemy with a chosen item\n"
+                "break(object)                  Breaks chosen object in room\n"
+                "open(oject)                    Open specified object e.g Box,Crate\n"
+                "drop(object)                   Drops specified item from inventory\n"
+                "examine(object)                Examines specified object\n"
+                "\n"
+                "Game options:\n"
+                "save                           Saves game at current point\n"
+                "restore                        Return to last save\n"
+                "restart                        Restarts game at beginning\n"
+                "quit                           Quits game\n"
+                "\n"
+                "Class/Crime Abilities:\n"
+                "Thief:\n"
+                "picklock(object)               Picklock a door or chest etc.\n"
+                "stealth                        Toggle stealth to go into or out off stealth mode\n"
+                "Murderer:\n"
+                "smash(object)                  Smashes chosen object for example a door\n"
+                "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
+                "Con Artist:\n"
+                "teleport(direction)            Works instead of movement but can go past locked doors\n"
+                "invisible                      Makes you go invisible\n" << endl;
+        armoury_room2(); // this allows user to have another attempt at inputting valid command.
+
     }
     else // this statement allows the user an infinite chance to retry if input data doesn't match any conditions.
     {
@@ -104,6 +149,7 @@ void canteen_room2()
     else if (c_room == "eat(bread)" && c == 0)
     {
         cout<<"You eat the bread and gain some hp... "<<endl;
+        //missing code to make changes to player's health points.
         c = 1; // once user meets the condition once, it cannot be met again by changing the value of "c" thereby, changing the condition.
         canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition. 
     }
@@ -117,6 +163,7 @@ void canteen_room2()
     else if (c_room == "drink(milk)" && d == 0 )
     {
         cout<<"you drink the milk and gain some hp"<<endl;
+        //missing code to make changes to player's health points.
         d = 1; // once user meets the condition once, it cannot be met again by changing the value of "d" thereby, changing the condition.
         canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition. 
     }
@@ -125,6 +172,49 @@ void canteen_room2()
         cout<<"you are already drank the milk..."<<endl; // this message notifies that the command can only be used once.
         cout<< "you dont feel thirsty anymore..."<<endl;
         canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition. 
+    }
+    else if (c_room == "help")
+    {
+         //help menu done by - Sohail ############################################################################################################
+         cout << "************************************************\n"
+                "                   Help Menu\n"
+                "************************************************\n"
+                "\nMovements:\n\n"
+                "n                Moves to North room\n"
+                "e                Moves to East room\n"
+                "s                Moves to South room\n"
+                "w                Moves to West room\n\n"
+                "Character Abilities:\n\n"
+                "search                         Searches local room\n"
+                "look                           Looks around room\n"
+                "talk                           Talks if possible to person in room\n"
+                "info                           Gives information on the room you're in\n"
+                "pickUp(item)                   Pickes up specified item\n"
+                "eat(item)                      Eats the secified item/food\n"
+                "drink(item)                    Drinks the specified item/drink\n"
+                "kill(enemy) with (item)        Kills a specified enemy with a chosen item\n"
+                "break(object)                  Breaks chosen object in room\n"
+                "open(oject)                    Open specified object e.g Box,Crate\n"
+                "drop(object)                   Drops specified item from inventory\n"
+                "examine(object)                Examines specified object\n"
+                "\n"
+                "Game options:\n"
+                "save                           Saves game at current point\n"
+                "restore                        Return to last save\n"
+                "restart                        Restarts game at beginning\n"
+                "quit                           Quits game\n"
+                "\n"
+                "Class/Crime Abilities:\n"
+                "Thief:\n"
+                "picklock(object)               Picklock a door or chest etc.\n"
+                "stealth                        Toggle stealth to go into or out off stealth mode\n"
+                "Murderer:\n"
+                "smash(object)                  Smashes chosen object for example a door\n"
+                "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
+                "Con Artist:\n"
+                "teleport(direction)            Works instead of movement but can go past locked doors\n"
+                "invisible                      Makes you go invisible\n" << endl;
+        canteen_room2(); // this allows user to have another attempt at inputting valid command.
     }
     else 
     {
