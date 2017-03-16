@@ -1,0 +1,132 @@
+string c_room;
+
+void cave_room()
+    
+{
+    sqliteinsert();
+    GameMenu game;
+    // This function is for the first room the cell room. It allows for input and output to create a puzzle for the player to figure out how to escape.
+    
+    Player p;
+    item pebbles("Pebbles","Some shiny pebbles");
+    item weeds("weeds", "weeds plants");
+    item plants("plants", "wild plants");
+    item door_lock("door_lock", "lock on the door");
+    item glass("glass", "some pieces of glass");
+    
+    cout << "You are now in the cave room "<<endl;
+    
+    cout << "view is blocked and find it difficult to see if there is any way out"<<endl;
+    
+    cout << "You may now enter commands to procced"<< endl;
+    
+    cin >> c_room;
+    if(c_room == "help")
+        
+    {
+        game.HelpMenu();
+        cin >> c_room;
+    
+    }
+    
+    while (c_room != "search" && c_room != "info")
+    {
+        cout<<"Try again"<< endl;
+        cin >> c_room;
+    }
+    
+    if (c_room == "search")
+    {
+        cout<<"You enter the room and see it deserted with weeds, pebbles, plants, door_lock and glass."<<endl;
+        cin >> firstAction;
+        
+        if(firstAction == "help")
+        {
+            game.HelpMenu();
+            cin >> firstAction;
+        }
+    }
+    
+    else if (c_room == "info")
+    {
+    
+        cout<<"As you approach inwards, it becomes apparent it is empty with only the light coming through the holes..."<<endl;
+        cin >> firstAction;
+        if(firstAction == "help")
+        {
+            game.HelpMenu();
+            cin >> firstAction;
+        }
+    }
+    
+          // This section is accessed once the above action is called (search) So a player has to search the room before just bashing in commands
+      while (firstAction != "search(weeds)" && firstAction != "break(pebbles)" && firstAction != "break(door_lock)" && firstAction != "break(broken pieces of rock)" && firstAction != "break(plants)" && firstAction != "eat(weeds)" )
+          
+      {
+        cout <<"Try again" <<endl;
+        cin >> firstAction;
+      }
+    
+      if ( firstAction == "break(pebbles)" || firstAction == "break(door_lock)" || firstAction == "break(plants)" || firstAction == "break(glass)")
+          
+      {
+        cout << "You cut your hand and lose 1 health" << endl;
+        p.pebbles();
+        p.door_lock();
+      }
+      else if ( firstAction == "eat(weeds)")
+          
+      {
+          cout << "You ate posionous food and loose 1 health" <<endl;
+          p.pebbles();
+          p.door_lock();
+          item Silvercoin("Silver coin","These can be used to open the door" );
+          vector <item> Inventory;
+          Inventory.push_back(Silvercoin);
+          cout << "You now have a " << Inventory[0].getName() << " in your inventory " << Inventory[0].getInfo() << endl;
+      }
+    
+      else if (firstAction == "search(weeds)")
+      {
+          item Silvercoin("Silver Coin","These can be used to open the door");
+          vector <item> Inventory;
+          Inventory.push_back(Silvercoin);
+          cout << "You now have a " << Inventory[0].getName() << " in your inventory " << Inventory[0].getInfo() << endl;
+          
+      }
+    
+    
+
+    
+    
+    while(getOutCell != "picklock(door_lock)" && getOutCell != "picklock(door)" )
+    {
+        cout << "Try Again" << endl;
+        cin >> getOutCell;
+    }
+    
+    if(getOutCell == "picklock(door_lock)" || "picklock(door)")
+    {
+        cout << "You Succesfully picklock the door and escape the Cave room!!\n"
+        "Well Done! You are free now"<< endl;
+    }
+    
+}
+    
+    
+    
+    
+    
+      
+
+int main()
+{
+
+    
+    GameMenu G1;
+    cellRoom(G1.FirstMenu());
+    cave_room();
+    
+    return 0;
+
+}
