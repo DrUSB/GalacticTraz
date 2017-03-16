@@ -1,0 +1,161 @@
+# include <iostream>
+using namespace std;
+
+string a_room; // stores data of user input inside the armoury room as string.
+string c_room; // stores data of user input inside the canteen room as string.
+int a = 0; // the following integers; a, b, c and d are used to limit the user from using certain commands more than once.
+int b = 0;
+int c = 0;
+int d = 0;
+
+// for each room, there are two functions, one of which recurs until a condition is met, the other function calls the recursive function.
+
+void armoury_room();  // The 4 functions are declared before defining them to avoid compile time errors. 
+void armoury_room2();
+void canteen_room();
+void canteen_room2();
+
+
+void armoury_room2() // this is the recursive function of the armoury room.
+{
+    cin >> a_room; // this stores user input data as string which is used to compare with conditions stated.
+    cout<<"......................................................................................................................"<<endl;
+    if (a_room == "n") // this if statement is used to allow the user to leave the room into the canteen room.
+    {
+        cout<<"you leave the armoury room..."<<endl; // allows user to know that they are leaving the armoury room.
+        canteen_room(); // canteen_room function called to allow the user to move into the canteen room.
+    }
+    else if (a_room == "search" || a_room == "info") // this statement allows user to know more about the room to help them to execute other commands.
+    {
+        if (a_room == "search") // only executes if condition is met.
+        {
+            cout<< "You search the room and find bulletproof_vests on top of tables, several weapon racks and a small window \n"
+            "You also notice there are no bullets in guns that are in the weapon racks but it can still be used as a weapon"<<endl;
+            armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition. 
+        }
+        if (a_room == "info")// only executes if condiiton is met.
+        {
+            cout<< "You stand at the entrance, allowing your eyes to adjust to the dim light.\n" 
+            "You notice the room is quite small and packed with things." <<endl;
+            armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition.
+        }
+    }
+    else if (a_room== "pickUp(gun)" && a == 0 || a_room == "pickUp(guns)" && a == 0) 
+    {
+        cout<<"you pickup the gun, this in turn increased your attack. "<<endl;
+        a = 1; // once user meets the condition once, it cannot be met again by changing the value of "a" thereby, changing the condition.
+        armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition.
+    }
+    else if (a_room == "pickUp(gun)" && a == 1 || a_room == "pickUp(guns)" && a == 1)// this condition is to restrict user from executing the same command again.
+    {
+        cout<<"you already have a gun..."<<endl; // this message notifies that the command can only be used once.
+        cout<<"you cannot pick up another gun..."<<endl;
+
+        armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition.
+        
+    }
+    else if (a_room == "pickUp(bulletproof_vests)" && b == 0 || a_room == "pickUp(bulletproof_vest)" && b == 0)
+    {
+        cout<<"you pick up the bulletproof_vest and wear it, this increases your defence."<<endl;
+       
+        b = 1; // once user meets the condition once, it cannot be met again by changing the value of "b" thereby, changing the condition.
+        armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition.
+    }
+    else if(a_room == "pickUp(bulletproof_vests)" && b==1 || a_room == "pickUp(bulletproof_vest)" && b == 1)
+    {
+        cout<<"you are already wearing a bulletproof_vest..."<<endl; // this message notifies that the command can only be used once.
+        cout<< "you cannot wear another one..."<<endl;
+        armoury_room2(); // used to allow recursion until the loop is broken only by "n" condition.
+    }
+    else // this statement allows the user an infinite chance to retry if input data doesn't match any conditions.
+    {
+        cout<< "Invalid Command...."<<endl; // used to alert the user about the invalid command.
+        cout<< "Please try again..."<<endl;
+        armoury_room2(); // used to allow recursion until they input a valid command or until the loop is broken only by "n" condition.
+        
+    }
+       
+}
+
+
+void canteen_room2()
+{
+    cin >> c_room;  // this stores user input data inside the canteen room as string which is used to compare with conditions stated.
+    cout<<"......................................................................................................................"<<endl;
+    if (c_room == "s") // this if statement is used to allow the user to leave the room into the armoury room.
+    {
+        cout<<"you leave the canteen room..."<<endl;
+        armoury_room(); // if condition is met, the recursive function loop is broken and calls armoury room function to allow the user to move into the armoury room.
+    }
+    else if (c_room == "search" || c_room == "info") // this statement helps user find objects and use the information to input commands to progress in the game.
+    {
+        if (c_room == "search") // only executes if condition is met.
+        {
+             cout<<"You search the room and find tables, chairs, bread and milk on serving table."<<endl;
+             canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition.         
+
+        }
+        if (c_room == "info") // only executes if condition is met.
+        {
+             cout<<"As you walked into the canteen, you notice it is well lit, very large and found nobody inside..."<<endl;
+             canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition. 
+        }
+    }
+    else if (c_room == "eat(bread)" && c == 0)
+    {
+        cout<<"You eat the bread and gain some hp... "<<endl;
+        c = 1; // once user meets the condition once, it cannot be met again by changing the value of "c" thereby, changing the condition.
+        canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition. 
+    }
+    else if (c_room == "eat(bread)" && c == 1)
+    {
+        cout<<"you already ate the bread... "<<endl; // this message notifies that the command can only be used once.
+        cout<<"you dont feel like eating anymore..."<<endl;
+        canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition. 
+        
+    }
+    else if (c_room == "drink(milk)" && d == 0 )
+    {
+        cout<<"you drink the milk and gain some hp"<<endl;
+        d = 1; // once user meets the condition once, it cannot be met again by changing the value of "d" thereby, changing the condition.
+        canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition. 
+    }
+    else if(c_room == "drink(milk)" && d==1 )
+    {
+        cout<<"you are already drank the milk..."<<endl; // this message notifies that the command can only be used once.
+        cout<< "you dont feel thirsty anymore..."<<endl;
+        canteen_room2(); // used to allow recursion until the loop is broken only by "s" condition. 
+    }
+    else 
+    {
+        cout<< "Invalid command...."<<endl; // used to alert the user about their invalid command input. 
+        cout<< "Please try again..."<<endl;
+        canteen_room2(); // used to allow recursion until user inputs a valid command or until the loop is broken only by "s" condition.
+        
+    }
+       
+}
+
+void canteen_room() // main canteen room function in which the recursive canteen room function runs.
+{ 
+    cout<<"You are now inside the canteen room..."<<endl; // notifies user about their current location which is inside the canteen room
+    cout<<"Enter commands to proceed..."<<endl;
+    canteen_room2(); // this begins the recursive loop inside the canteen until user breaks loops via the condition statement.
+}
+
+void armoury_room() // main armoury room function in which the recursive canteen room function runs.
+{
+    cout<<"You are now inside the armoury room..."<<endl; // notifies user about their current location which is inside the canteen room.
+    cout<<"Enter commands to proceed..."<<endl;
+    armoury_room2(); // this begins the recursive loop inside the armoury room until user breaks loops via the condition statement.
+}
+
+
+
+
+int main() // since this function is always run first, the functions defined are run inside the main function.
+{
+    armoury_room(); // only armoury room is run, as armoury room is discovered before canteen and canteen function is called inside the armoury room function. 
+    return 0;
+    
+}
