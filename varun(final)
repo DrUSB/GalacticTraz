@@ -20,7 +20,6 @@ void armoury_room(Player p);  // The 5 functions are declared before defining th
 void armoury_room2(Player p);
 void canteen_room(Player p);
 void canteen_room2(Player p);
-void cellroom();
 
 void sqliteinsert()
 {
@@ -67,59 +66,6 @@ void canteen_room(Player p) // main canteen room function in which the recursive
 
 void sqliteinsert();
 
-
-void cellRoom(Player p){
-    // This function is for the first room the cell room. It allows for input and output to create a puzzle for the player to figure out how to escape.
-    cout << "You may now enter commands to procced"<< endl;
-    cin >> firstRoom;
-    while (firstRoom != "search" && firstRoom != "info"){
-        //while loop to make sure the correct commands are input and if not to allow them to try again
-        cout << "Try again" << endl;
-        cin >> firstRoom;
-    }
-
-    if (firstRoom == "search"){
-        // This if section is for reacting towards the commands the user inputs for example breaking a sink
-        cout << "You search the room and find a bed, toilet_bowl,cell_door,sink and window." << endl;
-        cin >> firstAction;
-    }
-    
-     else if(firstRoom == "info"){
-            cout << "You look around the room, its hard to see anything as its so dark, You notice some light coming through\n"
-                "shining onto a bed."<< endl;
-             cin >> firstAction;
-        }
-    
-        while (firstAction != "break(toilet_bowl)" && firstAction != "break(sink)" && firstAction != "break(cell_door)" && firstAction != "break(window)" && firstAction != "search(sink)" && firstAction != "w" ){ 
-        cout << "Try again" << endl;
-        cin >> firstAction;
-        }
-    
-        if (firstAction == "break(toilet_bowl)" || firstAction == "break(cell_door)" || firstAction == "break(window)"){
-            cout << "You cut your hand and lose 1 health" << endl;
-            p.toiletBroke();
-        }
-        else if ( firstAction == "break(sink)"){
-            cout << "You cut your hand and lose 1 heath" << endl;
-            p.toiletBroke();
-            cout << "While breaking the sink you find some hair pins in the remains (You could use these as lockpicks!)" << endl;
-            
-        }
-        
-        else if (firstAction == "search(sink)"){
-            cout << "You search the sink and find some hair pins. (You could use these as lockpicks!)" << endl;
-            //if (sqlite3_open(Galacti))
-           
-        }
-    else if (firstAction == "w")
-    {
-        armoury_room(p);
-    }
-   
-    }
-
-
-
 string a_room; // stores data of user input inside the armoury room as string.
 string c_room; // stores data of user input inside the canteen room as string.
 int a = 0; // the following integers; a, b, c and d are used to limit the user from using certain commands more than once.
@@ -160,7 +106,6 @@ void armoury_room2(Player p) // this is the recursive function of the armoury ro
         cout<<"you pickup the gun, this in turn increased your attack. "<<endl;
         a = 1; // once user meets this condition once, it cannot be met again by changing the value of "a" thereby, changing the condition.
         p.holdGun();
-
         armoury_room2(p); // used to allow recursion until the loop is broken only by "n" condition.
     }
     else if (a_room == "pickUp(gun)" && a == 1 || a_room == "pickUp(guns)" && a == 1)// this condition is to restrict user from executing the same command again.
@@ -266,6 +211,7 @@ void canteen_room2(Player p)
     else if (c_room == "eat(bread)" && c == 0)
     {
         cout<<"You eat the bread and gain some hp... "<<endl;
+        p.eatBread();
         c = 1; // once user meets the condition once, it cannot be met again by changing the value of "c" thereby, changing the condition.
         canteen_room2(p); // used to allow recursion until the loop is broken only by "s" condition. 
     }
@@ -279,7 +225,7 @@ void canteen_room2(Player p)
     else if (c_room == "drink(milk)" && d == 0 )
     {
         cout<<"you drink the milk and gain some hp"<<endl;
-        //p.drinkMilk();
+        p.drinkMilk();
         d = 1; // once user meets the condition once, it cannot be met again by changing the value of "d" thereby, changing the condition.
         canteen_room2(p); // used to allow recursion until the loop is broken only by "s" condition. 
     }
@@ -337,10 +283,8 @@ void canteen_room2(Player p)
         cout<< "Invalid command...."<<endl; // used to alert the user about their invalid command input. 
         cout<< "Please try again..."<<endl;
         canteen_room2(p); // used to allow recursion until user inputs a valid command or until the loop is broken only by "s" condition.
-        
-    }
-   
-       
+     
+    }   
 }
 
 
@@ -348,87 +292,7 @@ void canteen_room2(Player p)
 int main(){
    
     sqliteinsert();
+    armoury_room();
 
-    string name;
-    int race;
-    int cl4ss;
-    string checkForHelp;
-    cout << "Welcome to GalAcTicTRaz!" << endl;
-    cin.get();
-    cout << "Game is now loading..."<< endl;
-    cin.get();
-    cout << "For information on commands type help. Otherwise type anything to continue" << endl;
-    cin >> checkForHelp;
-    if (checkForHelp.compare("help") == 0){
-        cout << "************************************************\n"
-                "                   Help Menu\n"
-                "************************************************\n"
-                "\nMovements:\n\n"
-                "n                Moves to North room\n"
-                "e                Moves to East room\n"
-                "s                Moves to South room\n"
-                "w                Moves to West room\n\n"
-                "Character Abilities:\n\n"
-                "search                         Searches local room\n"
-                "look                           Looks around room\n"
-                "talk                           Talks if possible to person in room\n"
-                "info                           Gives information on the room you're in\n"
-                "pickUp(item)                   Pickes up specified item\n"
-                "eat(item)                      Eats the secified item/food\n"
-                "drink(item)                    Drinks the specified item/drink\n"
-                "kill(enemy) with (item)        Kills a specified enemy with a chosen item\n"
-                "break(object)                  Breaks chosen object in room\n"
-                "open(oject)                    Open specified object e.g Box,Crate\n"
-                "drop(object)                   Drops specified item from inventory\n"
-                "examine(object)                Examines specified object\n"
-                "\n"
-                "Game options:\n"
-                "save                           Saves game at current point\n"
-                "restore                        Return to last save\n"
-                "restart                        Restarts game at beginning\n"
-                "quit                           Quits game\n"
-                "\n"
-                "Class/Crime Abilities:\n"
-                "Thief:\n"
-                "picklock(object)               Picklock a door or chest etc.\n"
-                "stealth                        Toggle stealth to go into or out off stealth mode\n"
-                "Murderer:\n"
-                "smash(object)                  Smashes chosen object for example a door\n"
-                "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
-                "Con Artist:\n"
-                "teleport(direction)            Works instead of movement but can go past locked doors\n"
-                "invisible                      Makes you go invisible\n" << endl;
-
-    }
-    cout << "What is your name prisoner?" << endl;
-    cin >> name;
-    cout << "Welcome " << name << " What is your race? Choose via the Number\n" << endl;
-    cout << "1.Dark Gnome\n"
-            "2.Galactical Mushroom\n"
-            "3.Ogre\n"
-            "4.Human\n"
-            "5.Ultimate Fish\n"
-            "6.Goblin\n" << endl;
-    cin >> race;
-    cout << "1.Thief\n"
-            "2.Murderer\n"
-            "3.Con-Artist\n" << endl;
-    cout << "Now please choose a class"<< endl;
-    cin >> cl4ss;
-    Player player1(race,cl4ss);
-    player1.showStats();
-    cin.get();
-    cout << "You have been caught for your crimes against the Galactical Federation\n"
-            "You are held within the most secure prison in the Galaxy, GalacticTraz\n"
-            "You must escape tonight if you have any chance of escaping at all, before\n"
-            "the prison is in lockdown\n"
-            "Good luck."<< endl;
-    cin.get();
-    cout << "You wake up in a dark cell room..." << endl;
-    cin.get();
-    cout << "You notice the smell of damp in the air\n"
-            "The guards start shouting LIGHTS OUT! All the lights start turning off\n"
-            "one by one until the prison is almost in pure darkness\n" << endl;
-    cellRoom(player1);
     return 0;
 }
