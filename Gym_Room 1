@@ -1,0 +1,177 @@
+# include <iostream>
+using namespace std;
+
+string command_1;
+string command_2;
+
+void solitaryroom();
+void gymroom();
+
+void gymroom()
+{
+    cout >> "You have now entered the gym room/n"<< endl;
+    cin >> command_1;
+    if(command_1 == "help")
+    {
+        //help menu done by - Sohail ############################################################################################################
+        cout << "************************************************\n"  
+                "                   Help Menu\n"
+                "************************************************\n"
+                "\nMovements:\n\n"
+                "n                Moves to North room\n"
+                "e                Moves to East room\n"
+                "s                Moves to South room\n"
+                "w                Moves to West room\n\n"
+                "Character Abilities:\n\n"
+                "search                         Searches local room\n"
+                "look                           Looks around room\n"
+                "talk                           Talks if possible to person in room\n"
+                "info                           Gives information on the room you're in\n"
+                "pickUp(item)                   Pickes up specified item\n"
+                "eat(item)                      Eats the secified item/food\n"
+                "drink(item)                    Drinks the specified item/drink\n"
+                "kill(enemy) with (item)        Kills a specified enemy with a chosen item\n"
+                "break(object)                  Breaks chosen object in room\n"
+                "open(oject)                    Open specified object e.g Box,Crate\n"
+                "drop(object)                   Drops specified item from inventory\n"
+                "examine(object)                Examines specified object\n"
+                "\n"
+                "Game options:\n"
+                "save                           Saves game at current point\n"
+                "restore                        Return to last save\n"
+                "restart                        Restarts game at beginning\n"
+                "quit                           Quits game\n"
+                "\n"
+                "Class/Crime Abilities:\n"
+                "Thief:\n"
+                "picklock(object)               Picklock a door or chest etc.\n"
+                "stealth                        Toggle stealth to go into or out off stealth mode\n"
+                "Murderer:\n"
+                "smash(object)                  Smashes chosen object for example a door\n"
+                "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
+                "Con Artist:\n"
+                "teleport(direction)            Works instead of movement but can go past locked doors\n"
+                "invisible                      Makes you go invisible\n" << endl;
+        cin >> command_1;
+        
+        while (command_1 == "search" || command_1 == "info" )
+        {    
+            cout << "Command not recognized" << endl;
+            cin >> command_1;
+        
+        if (command_1 == "info")
+        {
+            cout >> "The room is brightly light with lot of fitness equipment occupying the room and there is only one exit into another room" >>endl;
+            cin >> command_1;
+        }
+        if (command_1 == "search")
+        {
+            cout >> "You have searched the room and you have found a water fountain, some protien bars and a suspicious purse" >>endl;
+            cin >> command_1;
+        }
+        while (command_1 == "drink(water)" || command_1 == "eat(protien bars)" || "pickup(purse)")
+        {
+            if (command_1 == "drink(water)")
+        {
+            cout >> "You are no longer thirsty" >>endl;
+            //code for increasing hp
+            cin >> command_1;
+        }
+            else if (command_1 == "eat(protein bars)")
+        {
+            cout >> "You are no longer hungry" >>endl;
+            //code for increasing hp
+            cin >> command_1;
+        }
+            else (command_1 == "pickup(purse))")
+        {
+            cout >> "you searched the purse and found a map of the prison and the map has been added to your inventory but you have spent too much time in the gym and have alerted the guard and they drag you of to solitary confinement" >>endl;
+            //code for adding map to inventory
+            cin >> solitary_room();
+        }
+      
+}
+
+void solitaryroom()
+{
+    cout >> "You have now entered the solitary room/n"<< endl;
+    cin >> command_2;
+    if(command_2 == "help")
+    {
+        //help menu done by - Sohail ############################################################################################################
+        cout << "************************************************\n"  
+                "                   Help Menu\n"
+                "************************************************\n"
+                "\nMovements:\n\n"
+                "n                Moves to North room\n"
+                "e                Moves to East room\n"
+                "s                Moves to South room\n"
+                "w                Moves to West room\n\n"
+                "Character Abilities:\n\n"
+                "search                         Searches local room\n"
+                "look                           Looks around room\n"
+                "talk                           Talks if possible to person in room\n"
+                "info                           Gives information on the room you're in\n"
+                "pickUp(item)                   Pickes up specified item\n"
+                "eat(item)                      Eats the secified item/food\n"
+                "drink(item)                    Drinks the specified item/drink\n"
+                "kill(enemy) with (item)        Kills a specified enemy with a chosen item\n"
+                "break(object)                  Breaks chosen object in room\n"
+                "open(oject)                    Open specified object e.g Box,Crate\n"
+                "drop(object)                   Drops specified item from inventory\n"
+                "examine(object)                Examines specified object\n"
+                "\n"
+                "Game options:\n"
+                "save                           Saves game at current point\n"
+                "restore                        Return to last save\n"
+                "restart                        Restarts game at beginning\n"
+                "quit                           Quits game\n"
+                "\n"
+                "Class/Crime Abilities:\n"
+                "Thief:\n"
+                "picklock(object)               Picklock a door or chest etc.\n"
+                "stealth                        Toggle stealth to go into or out off stealth mode\n"
+                "Murderer:\n"
+                "smash(object)                  Smashes chosen object for example a door\n"
+                "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
+                "Con Artist:\n"
+                "teleport(direction)            Works instead of movement but can go past locked doors\n"
+                "invisible                      Makes you go invisible\n" << endl;
+        cin >> command_2;
+        
+        while (command_2 == "search" || command_2 == "info" )
+        {    
+            cout << "Command not recognized" << endl;
+            cin >> command_2;
+        
+        if (command_2 == "info")
+        {
+            cout >> "The room is dark and empty with nothing inside but you" >>endl;
+            cin >> command_2;
+        }
+        if (command_2 == "search")
+        {
+            cout >> "You have searched the room and you have find nothing... The guard comes with your food and he opens the door and puts the food in your cell... You can see his gun on his " >>endl;
+            cin >> command_2;
+        }
+        while (command_2 == "talk(guard)" || command_2 == "kill(guard)with(gun)" || command_2 == "eat(food)")
+        {
+            if (command_2 == "talk(guard)")
+        {
+            cout >> "You are no longer thirsty" >>endl;
+            //code for increasing hp
+            cin >> command_2;
+        }
+            else if (command_2 == "kill(guard)with(gun)")"
+        {
+            cout >> "You take the guards gun he resists but you shoot him in the forehead and kill him you can now advance to the alleyway" >>endl;
+            cin >> command_2;
+        }
+            else if (command_2 == "eat(food))"
+        {
+            cout >> "You ate the food and you have enough nutrition to survive another day" >>endl;
+            //code for advance to the alleyway
+            cin >> _room();
+        }
+      
+}
