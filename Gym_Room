@@ -1,0 +1,78 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    string Command;
+    cout << "You have now entered the gym room" << endl;
+    cin >> Command;
+    if (Command == "help")
+    { // help menu is not my code i have only intergrated it from another group member
+        cout << "************************************************\n"  
+                "                   Help Menu\n"
+                "************************************************\n"
+                "\nMovements:\n\n"
+                "n                Moves to North room\n"
+                "e                Moves to East room\n"
+                "s                Moves to South room\n"
+                "w                Moves to West room\n\n"
+                "Character Abilities:\n\n"
+                "search                         Searches local room\n"
+                "look                           Looks around room\n"
+                "talk                           Talks if possible to person in room\n"
+                "info                           Gives information on the room you're in\n"
+                "pickUp(item)                   Pickes up specified item\n"
+                "eat(item)                      Eats the secified item/food\n"
+                "drink(item)                    Drinks the specified item/drink\n"
+                "kill(enemy) with (item)        Kills a specified enemy with a chosen item\n"
+                "break(object)                  Breaks chosen object in room\n"
+                "open(oject)                    Open specified object e.g Box,Crate\n"
+                "drop(object)                   Drops specified item from inventory\n"
+                "examine(object)                Examines specified object\n"
+                "\n"
+                "Game options:\n"
+                "save                           Saves game at current point\n"
+                "restore                        Return to last save\n"
+                "restart                        Restarts game at beginning\n"
+                "quit                           Quits game\n"
+                "\n"
+                "Class/Crime Abilities:\n"
+                "Thief:\n"
+                "picklock(object)               Picklock a door or chest etc.\n"
+                "stealth                        Toggle stealth to go into or out off stealth mode\n"
+                "Murderer:\n"
+                "smash(object)                  Smashes chosen object for example a door\n"
+                "charge(enemy)                  Charges enemy dealing damage same as weapon held + 30%\n\n"
+                "Con Artist:\n"
+                "teleport(direction)            Works instead of movement but can go past locked doors\n"
+                "invisible                      Makes you go invisible\n"<< endl;
+    }
+    cin >> Command;
+    if (Command == "info")
+    {
+        cout << "The room is brightly light with lot of fitness equipment occupying the room and there is only one exit into another room"<< endl;
+    }
+    cin >> Command;
+    if (Command == "search")
+    {
+        cout << "You have searched the room and you have found a water fountain, some protien bars and a suspicious purse"<< endl;
+    }
+    cin >> Command;
+    if (Command == "drink(water)")
+    {
+        cout << "You are no longer thirsty"<< endl;
+    }
+    cin >> Command;
+    if (Command == "pickup(purse)")
+    {
+        cout << "you searched the purse and found a map of the prison and the map has been added to your inventory but you have spent too much time in the gym and have alerted the guard and they drag you of to solitary confinement"<< endl;
+    }
+    cin >> Command;
+    if (Command == "  ")
+    {
+        cout << "You have now entered the solitary room"<< endl;
+    }
+    
+    
+    return 0;
+}
